@@ -1,0 +1,40 @@
+/* reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Source Code Pro', monospace;;
+}
+
+ul {
+    border-radius: 10px;
+    padding-left: 0;
+    margin-bottom: 0;
+    
+}
+
+li {
+    cursor: pointer;
+}
+
+
+input {
+    border-radius: 7px;
+}
+
+
+.list-group {
+    padding: 0;
+    margin: 0;
+}
+
+.done {
+    text-decoration: line-through;
+}
+
+.done:hover {
+    text-decoration: line-through;
+}
