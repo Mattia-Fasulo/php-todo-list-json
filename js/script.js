@@ -9,7 +9,7 @@ const app = createApp({
         return {
             message: 'To Do List',
             todoList: [],
-            apiUrl: './server/server.php',
+            apiUrl: './server.php',
             newTodoText: ''
         }
     },
@@ -24,18 +24,53 @@ const app = createApp({
         addTodo() {
             // console.log(this.newTodoText)
 
-            const data = {
+            const todoFormData = {
                 newTodoText: this.newTodoText
             }
 
             axios.post(
                 this.apiUrl,
-                data,
+                todoFormData,
+                { headers: { 'Content-type': 'multipart/form-data' } }
+            ).then((response) => {
+                // console.log(response.data)
+
+                this.newTodoText = '';
+
+                this.getTodo()
+            });
+        },
+        toggleTodo(index) {
+            // console.log(index)
+
+            const todoFormData = {
+                toggleTodoIndex: index
+            }
+
+            axios.post(
+                this.apiUrl,
+                todoFormData,
+                { headers: { 'Content-type': 'multipart/form-data' } }
+            ).then((response) => {
+                console.log(response.data),
+                this.getTodo()
+            })
+        },
+        deleteTodo(index) {
+            // console.log(index)
+
+            const todoFormData = {
+                deleteTodoIndex: index
+            }
+
+            axios.post(
+                this.apiUrl,
+                todoFormData,
                 { headers: { 'Content-type': 'multipart/form-data' } }
             ).then((response) => {
                 // console.log(response.data)
                 this.getTodo()
-            });
+            })
         }
     },
     mounted() {

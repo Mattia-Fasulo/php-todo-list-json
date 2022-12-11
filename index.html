@@ -44,8 +44,10 @@
           <ul>
             <li v-for="(todo, index) in todoList" 
             :class="todo.done ? 'done' : ''"
-            class="list-group-item list-group-item-action list-group-item-dark">
-              {{(index + 1) + ' ' + todo.text}}</li>
+            class="list-group-item list-group-item-action list-group-item-dark"
+            @click="toggleTodo(index)">
+              {{(index + 1) + ' ' + todo.text}} 
+              <i @click.stop="deleteTodo(index)" class="fa-solid fa-trash"></i></li>
           </ul>
         </div>
       </div>
@@ -54,7 +56,7 @@
 
       <div class="row justify-content-center mt-4">
         <!-- input text -->
-        <input type="text" class="col-2 mx-2" placeholder="Text to do" v-model="newTodoText" name="newTodoText">
+        <input @keyup.enter="addTodo" type="text" class="col-4" placeholder="Text to do" v-model="newTodoText" name="newTodoText">
 
         <!-- button -->
         <button @click="addTodo" type="button" class="btn btn-dark col-2">Add To Do</button>
